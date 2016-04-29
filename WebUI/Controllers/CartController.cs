@@ -19,26 +19,26 @@ namespace WebUI.Controllers
         }
 
         [HttpPost]
-        public RedirectResult AddToCart(int id)
+        public RedirectResult AddToCart(int id, string returnUrl)
         {
             Character character = repository.Characters.FirstOrDefault(ch => ch.Id == id);
             if (character != null)
             {
                 GetCart().AddItem(character.Id);
             }
-            return new RedirectResult(Request.RawUrl);
+            return new RedirectResult(returnUrl);
 
         }
 
         [HttpDelete]
-        public RedirectResult RemoveFromCart(int id)
+        public RedirectResult RemoveFromCart(int id, string returnUrl)
         {
             Character character = repository.Characters.FirstOrDefault(ch => ch.Id == id);
             if (character != null)
             {
                 GetCart().RemoveItem(character.Id);
             }
-            return new RedirectResult(Request.RawUrl);
+            return new RedirectResult(returnUrl);
 
         }
 

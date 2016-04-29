@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Domain.Entities.Character>
+﻿@model WebUI.Models.MainModel
 
 @{
     ViewBag.Title = "List";
@@ -54,7 +54,7 @@
     </div>
     @{Html.EndForm();}
 
-    @foreach (var item in Model)
+    @foreach (var item in Model.Characters.ToList())
     {
         <div class="character-container">
             <div class="image-container">
@@ -79,6 +79,7 @@
             
             @{Html.BeginForm("AddToCart", "Cart");}
             <input type="hidden" name="id" value="@item.Id"/>
+            <input type="hidden" name="returnUrl" value="@Model.ReturnUrl"/>
             <input value="Vote" type="submit" />
             @{Html.EndForm();}
         </div>
