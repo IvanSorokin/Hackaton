@@ -1,0 +1,41 @@
+﻿body {
+}
+
+.root{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 80%;
+}
+
+.character-container {
+    border: 1px solid #000;
+    margin-bottom: 10px;
+    max-height: 300px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.image-container {
+    width: 300px;
+}
+
+.image-container img {
+    max-width: 100%;
+    height: auto;
+}
+
+.character__name {
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+.character-info {
+    display: block;
+    margin-left: 10px;
+}
+
+.character-container:nth-child(even) {
+    background-color: lightgrey;
+}

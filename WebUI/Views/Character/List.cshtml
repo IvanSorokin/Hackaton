@@ -2,49 +2,52 @@
 
 @{
     ViewBag.Title = "List";
+    <link href="@Url.Content("~/Content/Characters.css")"
+          rel="stylesheet" type="text/css" />
 }
 
-<h2>List</h2>
+<div class="root">
+    <h2>Characters</h2>
+    @foreach (var item in Model)
+    {
+        <div class="character-container">
+            <div class="image-container">
+                <img src="../Content/Images/@item.PicturePath" />
+            </div>
+            <div class="character-info">
+                <div class="character__name">@Html.DisplayFor(modelItem => item.Name)</div>
+                <div class="character__description">@Html.DisplayFor(modelItem => item.Description)</div>
+                <div class="character__cost">Cost: @Html.DisplayFor(modelItem => item.Cost)</div>
+                <div class="character__status"> Status:
+                    @if (item.IsAlive)
+                    {
+                        <span>Alive</span>
+                    }
+                    else
+                    {
+                        <span>Dead</span>
+                    }
+                    <div class="character-sex">Sex: @item.Sex.ToString()</div>
+                </div>
+            </div>
+        </div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cost)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsAlive)
-        </th>
-
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cost)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsAlive)
-        </td>
-        <td>
-           <img src="../Content/Images/@item.PicturePath"/>
-        </td>
-    </tr>
-}
-
-</table>
+        @*    <tr>*@
+        @*        <td>*@
+        @*            @Html.DisplayFor(modelItem => item.Name)*@
+        @*        </td>*@
+        @*        <td>*@
+        @*            @Html.DisplayFor(modelItem => item.Description)*@
+        @*        </td>*@
+        @*        <td>*@
+        @*            @Html.DisplayFor(modelItem => item.Cost)*@
+        @*        </td>*@
+        @*        <td>*@
+        @*            @Html.DisplayFor(modelItem => item.IsAlive)*@
+        @*        </td>*@
+        @*        <td>*@
+        @*           <img src="../Content/Images/@item.PicturePath"/>*@
+        @*        </td>*@
+        @*    </tr>*@
+    }
+</div>
