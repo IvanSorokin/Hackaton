@@ -18,20 +18,35 @@
     <div class="item">
         <div>
             <label>Name</label>
-            <input name="name" />
+            <input name="name" value="@ViewBag.Name"/>
         </div>
 
         <div>
+            @{ 
+                var param = ViewBag.IsAlive == null ? false : (bool)ViewBag.IsAlive;
+                var checkLife = param ? "selected" : "";
+                var checkDead = param ? "" : "selected";
+             }
             <select id="Alive?" name="isAlive">
-                <option value="True">Alive</option>
-                <option value="False">Dead</option>
+                <option value="True" @checkLife>Alive</option>
+                <option value="False" @checkDead>Dead</option>
             </select>
         </div>
 
         <div>
+            @{ 
+                var checkFemale = "selected";
+                var checkMale = "";
+
+                if (ViewBag.Sex != null)
+                {
+                    checkFemale = ViewBag.Sex.ToString() == "Female" ? "selected" : "";
+                    checkMale = ViewBag.Sex.ToString() == "Female" ? "" : "selected";
+                }
+             }
             <select id="Sex" name="sex">
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
+                <option value="Male" @checkMale>Male</option>
+                <option value="Female" @checkFemale>Female</option>
             </select>
         </div>
 
