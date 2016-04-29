@@ -49,7 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\IProductRepository.cs" />
+    <Compile Include="Abstract\ICharacterRepository.cs" />
     <Compile Include="Concrete\EFCharacterRepository.cs" />
     <Compile Include="Concrete\EFDBContext.cs" />
     <Compile Include="Entities\Cart.cs" />

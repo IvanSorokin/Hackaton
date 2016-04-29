@@ -76,6 +76,11 @@
                     <div class="character-sex">Sex: @item.Sex.ToString()</div>
                 </div>
             </div>
+            
+            @{Html.BeginForm("AddToCart", "Cart");}
+            <input type="hidden" name="id" value="@item.Id"/>
+            <input value="Vote" type="submit" />
+            @{Html.EndForm();}
         </div>
 
         @*    <tr>*@
