@@ -17,13 +17,13 @@
 
     <h2>Продвинутый поиск</h2>
     @{Html.BeginForm("List", "Character", FormMethod.Post);}
-    <div class="item">
-        <div>
+        <ul style="float:left; padding-left:0">
+        <li style="display:inline">
             <label>Name</label>
             <input name="name" value="@ViewBag.Name"/>
-        </div>
+        </li>
 
-        <div>
+        <li style="display:inline">
             @{ 
                 var param = ViewBag.IsAlive == null ? false : (bool)ViewBag.IsAlive;
                 var checkLife = param ? "selected" : "";
@@ -33,9 +33,9 @@
                 <option value="True" @checkLife>Alive</option>
                 <option value="False" @checkDead>Dead</option>
             </select>
-        </div>
+        </li>
 
-        <div>
+        <li style="display:inline">
             @{ 
                 var checkFemale = "selected";
                 var checkMale = "";
@@ -50,10 +50,11 @@
                 <option value="Male" @checkMale>Male</option>
                 <option value="Female" @checkFemale>Female</option>
             </select>
-        </div>
+        </li>
+        </ul>
 
-    <input type="submit" value="Отправить" />
-    </div>
+    <input style="margin-left:5px" type="submit" value="Search" />
+
     @{Html.EndForm();}
 
     @foreach (var item in Model.Characters.ToList())
