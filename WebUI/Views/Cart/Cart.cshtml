@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Domain.Entities.Character>
+
+@{
+    ViewBag.Title = "Cart";
+}
+
+
+
+<div style="width:250px; position: fixed; bottom: 0; right: 0; background:white; border-color:black; border-style:solid; border-width:1px; height: 150px; overflow-y: scroll;">
+    <h4 style="margin-left:5px">Мои ставки</h4>
+    @foreach (var e in Model)
+    {
+        <div style="float: right; margin-bottom:2px; margin-top:2px">
+            <label style="float:left; margin-right: 5px"> @e.Name </label>
+            <label style="float:left; margin-right: 5px"> @e.Cost </label>
+            <div style="float:right; margin-right: 5px">
+                @{Html.BeginForm("RemoveFromCart", "Cart", FormMethod.Post);}
+                <input type="submit" value="X" />
+                <input type="hidden" name="id" value="@e.Id"></input>
+                <input type="hidden" name="returnUrl" value="@Request.RawUrl"></input>
+                @{Html.EndForm();}
+            </div>
+        </div>
+    }
+    @{var sum = Model.Select(x => x.Cost).Sum();}
+    <h5 style="margin-left:5px; float:left">Суммарно: @sum</h5>
+</div>

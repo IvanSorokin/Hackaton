@@ -257,10 +257,10 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\Character\List.cshtml" />
+    <Content Include="Views\Cart\Cart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Cart\" />
     <Folder Include="Views\Product\" />
   </ItemGroup>
   <ItemGroup>

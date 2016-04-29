@@ -18,9 +18,21 @@ namespace WebUI.Controllers
             repository = rep;
         }
 
+        public PartialViewResult Cart()
+        {
+            var result = new List<Character>();
+            foreach (var i in GetCart().CharactersIds)
+            {
+                var a = repository.Characters.FirstOrDefault(x => x.Id == i);
+                if (a != null)
+                    result.Add(a);
+            }
+            return PartialView("Cart",result);
+        }
+          
         [HttpPost]
         public RedirectResult AddToCart(int id, string returnUrl)
-        {
+         {
             Character character = repository.Characters.FirstOrDefault(ch => ch.Id == id);
             if (character != null)
             {
@@ -30,7 +42,7 @@ namespace WebUI.Controllers
 
         }
 
-        [HttpDelete]
+        
         public RedirectResult RemoveFromCart(int id, string returnUrl)
         {
             Character character = repository.Characters.FirstOrDefault(ch => ch.Id == id);
