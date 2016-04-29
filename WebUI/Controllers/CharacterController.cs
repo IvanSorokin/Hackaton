@@ -28,10 +28,15 @@ namespace WebUI.Controllers
             return repository.Characters
                 .Where(c => c.Name.Contains(name) && c.IsAlive == isAlive && c.Sex == sex).ToList();
         }
+
         [HttpPost]
         public ViewResult List(string name, bool isAlive, Sex sex)
         {
-            return View(FilterByParameters(name, isAlive, sex));
+            var view = View(FilterByParameters(name, isAlive, sex));
+            view.ViewBag.Name = name;
+            view.ViewBag.IsAlive = isAlive;
+            view.ViewBag.Sex = sex;
+            return view;
         }
 
         public ViewResult List(string fieldName, string fieldValue)
