@@ -7,16 +7,16 @@ using System.Web.Mvc;
 
 namespace WebUI.Controllers
 {
-    public class ProductController : Controller
+    public class CharacterController : Controller
     {
-        private IProductRepository repository;
-        public ProductController(IProductRepository productRepository)
+        private ICharacterRepository repository;
+        public CharacterController(ICharacterRepository productRepository)
         {
             this.repository = productRepository;
         }
         public ViewResult List()
         {
-            return View(repository.Products);
+            return View(repository.Characters);
         }
     }
 }

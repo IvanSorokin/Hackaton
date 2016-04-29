@@ -3,8 +3,8 @@ using Domain.Entities;
 
 namespace Domain.Abstract
 {
-    public interface IProductRepository
+    public interface ICharacterRepository
     {
-        IQueryable<Product> Products { get; }
+        IQueryable<Character> Characters { get; }
     }
 }

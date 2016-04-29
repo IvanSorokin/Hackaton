@@ -7,6 +7,7 @@ using Domain.Abstract;
 using System.Collections.Generic;
 using System.Linq;
 using Domain.Entities;
+using Domain.Concrete;
 
 namespace WebUI.Infrastructure
 {
@@ -30,16 +31,16 @@ namespace WebUI.Infrastructure
         }
         private void AddBindings()
         {
-            var mock = new Mock<IProductRepository>();
-            mock.Setup(repo => repo.Products).Returns(new List<Product>()
-            {
-                new Product() {Name="1", Price=322 },
-                new Product() {Name="2", Price=228 },
-                new Product() {Name="3", Price=1488 }
-            }.AsQueryable()
-            );
-            ninjectKernel.Bind<IProductRepository>().ToConstant(mock.Object);
-
+            //var mock = new Mock<ICharacterRepository>();
+            //mock.Setup(repo => repo.Characters).Returns(new List<Character>()
+            //{
+            //    new Character() {Name="1", Cost=322 },
+            //    new Character() {Name="2", Cost=228 },
+            //    new Character() {Name="3", Cost=1488 }
+            //}.AsQueryable()
+            //);
+            //ninjectKernel.Bind<ICharacterRepository>().ToConstant(mock.Object);
+            ninjectKernel.Bind<ICharacterRepository>().To<EFCharacterRepository>();
             // конфигурирование контейнера }
         }
     }
