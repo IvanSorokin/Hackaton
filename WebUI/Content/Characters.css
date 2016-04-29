@@ -11,14 +11,14 @@
 .character-container {
     border: 1px solid #000;
     margin-bottom: 10px;
-    max-height: 300px;
+    max-height: 600px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
 
 .image-container {
-    width: 300px;
+    width: 400px;
 }
 
 .image-container img {
@@ -34,6 +34,7 @@
 .character-info {
     display: block;
     margin-left: 10px;
+    max-width: 500px;
 }
 
 .character-container:nth-child(even) {

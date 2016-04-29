@@ -1,4 +1,5 @@
 ﻿using Domain.Abstract;
+using Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +15,19 @@ namespace WebUI.Controllers
         {
             this.repository = productRepository;
         }
-        public ViewResult List()
+
+        public List<Character> FilterByField(string fieldName, string fieldValue)
         {
-            return View(repository.Characters);
+            return repository.Characters.ToList()
+                .Where(x => x.GetType().GetProperty(fieldName).GetValue(x).ToString() == fieldValue)
+                .ToList();
+
+        }
+        public ViewResult List(string fieldName, string fieldValue)
+        {
+            if (fieldValue == null && fieldName == null)
+                return View(repository.Characters);
+            return View(FilterByField(fieldName, fieldValue));
         }
     }
 }

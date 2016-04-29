@@ -215,7 +215,11 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Characters.css" />
+    <Content Include="Content\Images\deyeneris.jpg" />
+    <Content Include="Content\Images\eddard.jpg" />
+    <Content Include="Content\Images\ramsey.jpg" />
     <Content Include="Content\Images\sersey.jpg" />
+    <Content Include="Content\Images\tyrion.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
