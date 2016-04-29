@@ -23,6 +23,7 @@
         <th>
             @Html.DisplayNameFor(model => model.IsAlive)
         </th>
+
         <th></th>
     </tr>
 
@@ -41,9 +42,7 @@
             @Html.DisplayFor(modelItem => item.IsAlive)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+           <img src="../Content/Images/@item.PicturePath"/>
         </td>
     </tr>
 }
