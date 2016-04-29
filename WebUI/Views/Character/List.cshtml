@@ -14,7 +14,7 @@
     @Html.RouteLink("Display all", "Default", new { action = "List" })
 
     <h2>Продвинутый поиск</h2>
-    @*@{Html.BeginForm("List", "Character", FormMethod.Post);}
+    @{Html.BeginForm("List", "Character", FormMethod.Post);}
     <div class="item">
         <div>
             <label>Name</label>
@@ -22,8 +22,10 @@
         </div>
 
         <div>
-            <label>IsAlive</label>
-            <input type="checkbox" , name="isAlive"></input>
+            <select id="Alive?" name="isAlive">
+                <option value="True">Alive</option>
+                <option value="False">Dead</option>
+            </select>
         </div>
 
         <div>
@@ -35,7 +37,7 @@
 
     <input type="submit" value="Отправить" />
     </div>
-    @{Html.EndForm();}*@
+    @{Html.EndForm();}
 
     @foreach (var item in Model)
     {

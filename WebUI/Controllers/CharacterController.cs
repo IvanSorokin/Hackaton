@@ -23,12 +23,16 @@ namespace WebUI.Controllers
                 .ToList();
 
         }
-
-        //[HttpPost]
-        //public ViewResult List(string name, bool isAlive, Sex sex )
-        //{
-        //    return View(repository.Characters);
-        //}
+        public List<Character> FilterByParameters(string name, bool isAlive, Sex sex)
+        {
+            return repository.Characters
+                .Where(c => c.Name.Contains(name) && c.IsAlive == isAlive && c.Sex == sex).ToList();
+        }
+        [HttpPost]
+        public ViewResult List(string name, bool isAlive, Sex sex)
+        {
+            return View(FilterByParameters(name, isAlive, sex));
+        }
 
         public ViewResult List(string fieldName, string fieldValue)
         {
