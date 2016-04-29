@@ -52,6 +52,7 @@
     <Compile Include="Abstract\IProductRepository.cs" />
     <Compile Include="Concrete\EFCharacterRepository.cs" />
     <Compile Include="Concrete\EFDBContext.cs" />
+    <Compile Include="Entities\Cart.cs" />
     <Compile Include="Entities\Character.cs" />
     <Compile Include="Migrations\201604290650044_Initial.cs" />
     <Compile Include="Migrations\201604290650044_Initial.Designer.cs">
