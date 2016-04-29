@@ -8,9 +8,34 @@
 
 <div class="root">
     <h2>Characters</h2>
-    @Html.ActionLink("Display males", "List", "Character", new {fieldName = "Sex", fieldValue="Male"}, null)
+    @Html.ActionLink("Display males", "List", "Character", new { fieldName = "Sex", fieldValue = "Male" }, null)
     @Html.ActionLink("Display women", "List", "Character", new { fieldName = "Sex", fieldValue = "Female" }, null)
     @Html.ActionLink("Display dead people", "List", "Character", new { fieldName = "IsAlive", fieldValue = "False" }, null)
+    @Html.RouteLink("Display all", "Default", new { action = "List" })
+
+    <h2>Продвинутый поиск</h2>
+    @*@{Html.BeginForm("List", "Character", FormMethod.Post);}
+    <div class="item">
+        <div>
+            <label>Name</label>
+            <input name="name" />
+        </div>
+
+        <div>
+            <label>IsAlive</label>
+            <input type="checkbox" , name="isAlive"></input>
+        </div>
+
+        <div>
+            <select id="Sex" name="sex">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+        </div>
+
+    <input type="submit" value="Отправить" />
+    </div>
+    @{Html.EndForm();}*@
 
     @foreach (var item in Model)
     {

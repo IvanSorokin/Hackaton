@@ -23,6 +23,13 @@ namespace WebUI.Controllers
                 .ToList();
 
         }
+
+        //[HttpPost]
+        //public ViewResult List(string name, bool isAlive, Sex sex )
+        //{
+        //    return View(repository.Characters);
+        //}
+
         public ViewResult List(string fieldName, string fieldValue)
         {
             if (fieldValue == null && fieldName == null)
