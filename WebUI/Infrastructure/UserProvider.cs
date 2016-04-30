@@ -9,7 +9,8 @@ namespace WebUI.Infrastructure
     {
         public Guid GetId(Controller controller)
         {
-            return Guid.Parse(controller.User.Identity.GetUserId());
+            var userId = controller.User.Identity.GetUserId();
+            return userId == null ? Guid.Empty : Guid.Parse(controller.User.Identity.GetUserId());
         }
     }
 }

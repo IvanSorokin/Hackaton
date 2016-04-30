@@ -10,5 +10,6 @@ namespace Domain.Abstract
         IQueryable<Vote> Votes { get; }
         void Add(Vote vote, HashSet<int> charactersIds);
         bool Contains(int weekId, Guid userId);
+        List<Character> CharactersPerWeek(int weekId, Guid userId);
     }
 }

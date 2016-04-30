@@ -11,7 +11,9 @@
 
 <div class="root">
     @Html.Partial("_LoginPartial")
+    @{ var votedMessage = Model.UserVoted ? "(вы уже голосовали на этой неделе)" : "";}
     <h2>Characters</h2>
+    <h4>@votedMessage</h4>
     @Html.ActionLink("Display males", "List", "Character", new { fieldName = "Sex", fieldValue = "Male" }, null)
     @Html.ActionLink("Display women", "List", "Character", new { fieldName = "Sex", fieldValue = "Female" }, null)
     @Html.ActionLink("Display dead people", "List", "Character", new { fieldName = "IsAlive", fieldValue = "False" }, null)
@@ -62,7 +64,9 @@
 
     @foreach (var item in Model.Characters.ToList())
     {
-        @Html.Partial("Character", new CharacterModel(item, Model.ReturnUrl))
+        @Html.Partial("Character", new CharacterModel(item, Model.ReturnUrl, Model.UserVoted))
     }
-    @{ Html.RenderAction("Cart", "Cart"); }
+
+    @if(!Model.UserVoted)
+    { Html.RenderAction("Cart", "Cart"); }
 </div>

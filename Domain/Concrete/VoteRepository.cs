@@ -35,6 +35,14 @@ namespace Domain.Concrete
             context.SaveChangesAsync();
         }
 
+        public List<Character> CharactersPerWeek(int weekId, Guid userId)
+        {
+            var characters = context.VoteItems
+                 .Where(x => x.Vote.UserID == userId && x.Vote.WeekId == weekId)
+                 .Select(x => x.Character);
+            return characters.ToList();
+        }
+
         public bool Contains(int weekId, Guid userId)
         {
             return context.Votes.Any(v => v.UserID == userId && v.WeekId == weekId);

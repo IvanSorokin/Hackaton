@@ -1,0 +1,14 @@
+@model WebUI.Models.ManageModel
+
+<div style="margin-left:20px">
+    <h4>Ваши ставки на текущую неделю:</h4>
+</div>
+@foreach (var e in Model.Characters)
+{
+    <div>
+        <ul>
+            <li style="display:inline">@e.Name</li>
+            <li style="display:inline">@e.Cost</li>
+        </ul>
+    </div>
+}

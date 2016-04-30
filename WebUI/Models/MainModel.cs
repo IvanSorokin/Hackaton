@@ -7,11 +7,13 @@ namespace WebUI.Models
     {
         public IEnumerable<Character> Characters{ get; set; }
         public string ReturnUrl{ get; set; }
+        public bool UserVoted { get; set; }
 
-        public MainModel(IEnumerable<Character> characters, string returnUrl)
+        public MainModel(IEnumerable<Character> characters, string returnUrl, bool voted)
         {
             Characters = characters;
             ReturnUrl = returnUrl;
+            UserVoted = voted;
         }
     }
 }

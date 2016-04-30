@@ -64,6 +64,7 @@ namespace WebUI.Controllers
 
         }
 
+        [Authorize]
         [HttpPost]
         public RedirectResult SubmitVotes(string returnUrl)
         {

@@ -6,8 +6,8 @@
 
 
 
-<div style="width:250px; position: fixed; bottom: 0; left: 0; background:white; border-color:black; border-style:solid; border-width:1px; height: 150px; overflow-y: scroll;">
-    <h4 style="margin-left:5px">Мои ставки</h4>
+<div style="width:250px; position: fixed; bottom: 0; left: 5px; background:white; border-color:black; border-style:solid; border-width:1px; height: 150px; overflow-y: scroll;">
+    <h4 style="margin-left:10px">Мои ставки</h4>
     @foreach (var e in Model.Characters)
     {
         <div style="float: right; margin-bottom:2px; margin-top:2px">
@@ -23,8 +23,8 @@
         </div>
     }
     @{var sum = Model.Characters.Select(x => x.Cost).Sum();}
-    <h5 style="margin-left:5px; float:left">Суммарно: @sum</h5>
-    <h5 style="margin-left: 5px; float: right">Cash: @Model.Cart.Cash</h5>
+    <h5 style="margin-left:10px; float:left">Суммарно: @sum</h5>
+    <h5 style="margin-right:10px; float: right">Cash: @Model.Cart.Cash</h5>
 
     @{ var display = Model.Characters.Count == 0 ? "none" : "block";}
 
