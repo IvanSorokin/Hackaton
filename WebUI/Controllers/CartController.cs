@@ -24,11 +24,10 @@ namespace WebUI.Controllers
         private readonly IVoteRepository voteRepository;
 
         public CartController(ICharacterRepository rep, ICartProvider cartProvider, 
-            EFDBContext dbContext, IWeekProvider weekProvider, IVoteRepository voteRepository)
+            IWeekProvider weekProvider, IVoteRepository voteRepository)
         {
             repository = rep;
             this.cartProvider = cartProvider;
-            DbContext = dbContext;
             this.weekProvider = weekProvider;
             this.voteRepository = voteRepository;
         }
