@@ -68,5 +68,10 @@
     }
 
     @if(!Model.UserVoted)
-    { Html.RenderAction("Cart", "Cart"); }
+    {
+        <div id="cart-root">
+            @{ Html.RenderAction("Cart", "Cart"); }
+        </div>
+    }
+    @Scripts.Render("/Scripts/cart.js");
 </div>

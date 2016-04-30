@@ -14,11 +14,7 @@
             <label style="float:left; margin-right: 5px"> @e.Name </label>
             <label style="float:left; margin-right: 5px"> @e.Cost </label>
             <div style="float:right; margin-right: 5px">
-                @{Html.BeginForm("RemoveFromCart", "Cart", FormMethod.Post);}
-                <input type="submit" value="X" />
-                <input type="hidden" name="id" value="@e.Id"/>
-                <input type="hidden" name="returnUrl" value="@Request.RawUrl"/>
-                @{Html.EndForm();}
+                <input type="button" value="X" onclick="unvote(@e.Id, '@Request.RawUrl')"/>
             </div>
         </div>
     }
