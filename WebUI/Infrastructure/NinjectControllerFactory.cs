@@ -38,6 +38,7 @@ namespace WebUI.Infrastructure
             ninjectKernel.Bind<ICartProvider>().To<CartProvider>();
             ninjectKernel.Bind<IAuthProvider>().To<FormsAuthProvider>();
             ninjectKernel.Bind<IWeekProvider>().To<WeekProvider>();
+            ninjectKernel.Bind<IUserProvider>().To<UserProvider>();
         }
     }
 }

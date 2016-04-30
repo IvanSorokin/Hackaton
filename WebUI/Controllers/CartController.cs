@@ -22,14 +22,16 @@ namespace WebUI.Controllers
         private readonly ICartProvider cartProvider;
         private readonly IWeekProvider weekProvider;
         private readonly IVoteRepository voteRepository;
+        private readonly IUserProvider userProvider;
 
         public CartController(ICharacterRepository rep, ICartProvider cartProvider, 
-            IWeekProvider weekProvider, IVoteRepository voteRepository)
+            IWeekProvider weekProvider, IVoteRepository voteRepository, IUserProvider userProvider)
         {
             repository = rep;
             this.cartProvider = cartProvider;
             this.weekProvider = weekProvider;
             this.voteRepository = voteRepository;
+            this.userProvider = userProvider;
         }
 
         public PartialViewResult Cart()
@@ -66,7 +68,7 @@ namespace WebUI.Controllers
         public RedirectResult SubmitVotes(string returnUrl)
         {
             var weekId = weekProvider.GetWeek();
-            var userId = Guid.Parse(User.Identity.GetUserId());
+            var userId = userProvider.GetId(this);
             var vote = new Vote() {UserID = userId, WeekId = weekId};
             if (voteRepository.Contains(weekId, userId))
                 return new RedirectResult(returnUrl);
