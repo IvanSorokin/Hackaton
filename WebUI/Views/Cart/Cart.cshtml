@@ -6,7 +6,7 @@
 
 
 
-<div style="width:250px; position: fixed; bottom: 0; right: 0; background:white; border-color:black; border-style:solid; border-width:1px; height: 150px; overflow-y: scroll;">
+<div style="width:250px; position: fixed; bottom: 0; left: 0; background:white; border-color:black; border-style:solid; border-width:1px; height: 150px; overflow-y: scroll;">
     <h4 style="margin-left:5px">Мои ставки</h4>
     @foreach (var e in Model)
     {
@@ -16,8 +16,8 @@
             <div style="float:right; margin-right: 5px">
                 @{Html.BeginForm("RemoveFromCart", "Cart", FormMethod.Post);}
                 <input type="submit" value="X" />
-                <input type="hidden" name="id" value="@e.Id"></input>
-                <input type="hidden" name="returnUrl" value="@Request.RawUrl"></input>
+                <input type="hidden" name="id" value="@e.Id"/>
+                <input type="hidden" name="returnUrl" value="@Request.RawUrl"/>
                 @{Html.EndForm();}
             </div>
         </div>

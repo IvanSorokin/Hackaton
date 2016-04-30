@@ -31,17 +31,8 @@ namespace WebUI.Infrastructure
         }
         private void AddBindings()
         {
-            //var mock = new Mock<ICharacterRepository>();
-            //mock.Setup(repo => repo.Characters).Returns(new List<Character>()
-            //{
-            //    new Character() {Name="1", Cost=322 },
-            //    new Character() {Name="2", Cost=228 },
-            //    new Character() {Name="3", Cost=1488 }
-            //}.AsQueryable()
-            //);
-            //ninjectKernel.Bind<ICharacterRepository>().ToConstant(mock.Object);
             ninjectKernel.Bind<ICharacterRepository>().To<EFCharacterRepository>();
-            // конфигурирование контейнера }
+            ninjectKernel.Bind<ICartProvider>().To<CartProvider>();
         }
     }
 }
