@@ -29,6 +29,7 @@
             <input type="hidden" name="id" value="@Model.Character.Id"/>
             <input type="hidden" name="returnUrl" value="@Model.ReturnUrl"/>
             <input value="Vote" type="submit" />
+            <input value="VoteAsync" type="button" onclick="vote(@Model.Character.Id, '@Model.ReturnUrl')"/>
             @{Html.EndForm();}
         </div>
      }

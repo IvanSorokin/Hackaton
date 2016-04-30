@@ -16,6 +16,7 @@
             <div style="float:right; margin-right: 5px">
                 @{Html.BeginForm("RemoveFromCart", "Cart", FormMethod.Post);}
                 <input type="submit" value="X" />
+                <input type="button" value="XA" onclick="unvote(@e.Id, '@Request.RawUrl')"/>
                 <input type="hidden" name="id" value="@e.Id"/>
                 <input type="hidden" name="returnUrl" value="@Request.RawUrl"/>
                 @{Html.EndForm();}
