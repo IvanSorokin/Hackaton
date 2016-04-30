@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using WebUI.Models;
 
 namespace WebUI.Controllers
@@ -47,6 +48,8 @@ namespace WebUI.Controllers
 
             var backUrl = string.Format("/Character/AdvancedList?name={0}&isAlive={1}&sex={2}", name, isAlive, sex);
             var view = View(new MainModel(FilterByParameters(name, isAlive, sex), backUrl));
+            var userId = User.Identity.GetUserId();
+            var userName = User.Identity.Name;
             view.ViewBag.Name = name;
             view.ViewBag.IsAlive = isAlive;
             view.ViewBag.Sex = sex;

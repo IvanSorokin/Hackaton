@@ -9,8 +9,8 @@ namespace Domain.Entities
     public class VoteItem
     {
         public int VoteItemId { get; set; }
-        public int VoteId { get; set; }
+        public virtual Vote Vote { get; set; }
         public int Position { get; set; }
-        public int HeroId { get; set; }
+        public virtual Character Character { get; set; }
     }
 }

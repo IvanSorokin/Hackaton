@@ -12,12 +12,6 @@ namespace Domain.Concrete
     public class EFCharacterRepository : ICharacterRepository
     {
         private EFDBContext context = new EFDBContext();
-        public IQueryable<Character> Characters
-        {
-            get
-            {
-                return context.Characters;
-            }
-        }
+        public IQueryable<Character> Characters => context.Characters;
     }
 }

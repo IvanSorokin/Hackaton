@@ -25,4 +25,8 @@
     @{var sum = Model.Characters.Select(x => x.Cost).Sum();}
     <h5 style="margin-left:5px; float:left">Суммарно: @sum</h5>
     <h5 style="margin-left: 5px; float: right">Cash: @Model.Cart.Cash</h5>
+    @{ Html.BeginForm("SubmitVotes", "Cart", FormMethod.Post);}
+        <input type="hidden" name="returnUrl" value="@Request.RawUrl" />
+        <input type="submit" value="Confirm"/>
+    @{ Html.EndForm();}
 </div>

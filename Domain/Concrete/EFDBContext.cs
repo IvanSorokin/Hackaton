@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,5 +12,7 @@ namespace Domain.Concrete
     public class EFDBContext : DbContext
     {
         public DbSet<Character> Characters { get; set; }
+        public DbSet<Vote> Votes { get; set; }
+        public DbSet<VoteItem> VoteItems { get; set; }
     }
 }

@@ -8,8 +8,8 @@ namespace Domain.Entities
 {
     public class Vote
     {
-        public int VoteId { get; set; }
-        public int UserId { get; set; }
+        public int VoteID { get; set; }
+        public Guid UserID { get; set; }
         public int WeekId { get; set; }
     }
 }

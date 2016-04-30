@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Domain.Abstract;
+using Domain.Concrete;
 using Domain.Entities;
+using Microsoft.AspNet.Identity;
 using WebUI.Infrastructure;
 using WebUI.Models;
 
@@ -15,11 +20,17 @@ namespace WebUI.Controllers
         // GET: Cart
         private readonly ICharacterRepository repository;
         private readonly ICartProvider cartProvider;
+        private readonly IWeekProvider weekProvider;
+        private readonly IVoteRepository voteRepository;
 
-        public CartController(ICharacterRepository rep, ICartProvider cartProvider)
+        public CartController(ICharacterRepository rep, ICartProvider cartProvider, 
+            EFDBContext dbContext, IWeekProvider weekProvider, IVoteRepository voteRepository)
         {
             repository = rep;
             this.cartProvider = cartProvider;
+            DbContext = dbContext;
+            this.weekProvider = weekProvider;
+            this.voteRepository = voteRepository;
         }
 
         public PartialViewResult Cart()
@@ -52,6 +63,20 @@ namespace WebUI.Controllers
 
         }
 
+        [HttpPost]
+        public RedirectResult SubmitVotes(string returnUrl)
+        {
+            var weekId = weekProvider.GetWeek();
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var vote = new Vote() {UserID = userId, WeekId = weekId};
+            if (voteRepository.Contains(weekId, userId))
+                return new RedirectResult(returnUrl);
+
+            var cart = GetCart();
+            voteRepository.Add(vote, cart.CharactersIds);
+            cartProvider.SetCart(this, new Cart());
+            return new RedirectResult(returnUrl);
+        }
         
         public RedirectResult RemoveFromCart(int id, string returnUrl)
         {
@@ -80,4 +105,15 @@ namespace WebUI.Controllers
             return cart;
         }
     }
+
+
 }
+
+
+/*
+{SELECT 
+    [Extent1].[VoteID] AS [VoteID], 
+    [Extent1].[UserID] AS [UserID], 
+    [Extent1].[WeekId] AS [WeekId]
+    FROM [dbo].[Votes] AS [Extent1]}
+*/

@@ -9,6 +9,7 @@ using System.Linq;
 using Domain.Entities;
 using Domain.Concrete;
 using WebUI.Infrastructure.Concrete;
+using WebUI.Models;
 
 namespace WebUI.Infrastructure
 {
@@ -33,8 +34,10 @@ namespace WebUI.Infrastructure
         private void AddBindings()
         {
             ninjectKernel.Bind<ICharacterRepository>().To<EFCharacterRepository>();
+            ninjectKernel.Bind<IVoteRepository>().To<VoteRepository>();
             ninjectKernel.Bind<ICartProvider>().To<CartProvider>();
             ninjectKernel.Bind<IAuthProvider>().To<FormsAuthProvider>();
+            ninjectKernel.Bind<IWeekProvider>().To<WeekProvider>();
         }
     }
 }
