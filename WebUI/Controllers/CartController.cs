@@ -42,7 +42,7 @@ namespace WebUI.Controllers
             if (character != null)
             {
                 var cart = GetCart();
-                if (cart.Cash > (double) character.Cost)
+                if (cart.Cash > (double) character.Cost && !cart.Contains(character.Id))
                 {
                     cart.Cash -= (double) character.Cost;
                     cart.AddItem(character.Id);
@@ -55,12 +55,15 @@ namespace WebUI.Controllers
         
         public RedirectResult RemoveFromCart(int id, string returnUrl)
         {
-            Character character = repository.Characters.FirstOrDefault(ch => ch.Id == id);
-            if (character != null)
+            var cart = GetCart();
+            if (cart.CharactersIds.Contains(id))
             {
-                var cart = GetCart();
-                cart.Cash += (double) character.Cost;
-                cart.RemoveItem(character.Id);
+                Character character = repository.Characters.FirstOrDefault(ch => ch.Id == id);
+                if (character != null)
+                {
+                    cart.Cash += (double)character.Cost;
+                    cart.RemoveItem(character.Id);
+                }
             }
             return new RedirectResult(returnUrl);
 
