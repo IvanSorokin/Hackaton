@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Domain.Entities.Character>
+﻿@model WebUI.Models.CartViewModel
 
 @{
     ViewBag.Title = "Cart";
@@ -8,7 +8,7 @@
 
 <div style="width:250px; position: fixed; bottom: 0; left: 0; background:white; border-color:black; border-style:solid; border-width:1px; height: 150px; overflow-y: scroll;">
     <h4 style="margin-left:5px">Мои ставки</h4>
-    @foreach (var e in Model)
+    @foreach (var e in Model.Characters)
     {
         <div style="float: right; margin-bottom:2px; margin-top:2px">
             <label style="float:left; margin-right: 5px"> @e.Name </label>
@@ -22,6 +22,7 @@
             </div>
         </div>
     }
-    @{var sum = Model.Select(x => x.Cost).Sum();}
+    @{var sum = Model.Characters.Select(x => x.Cost).Sum();}
     <h5 style="margin-left:5px; float:left">Суммарно: @sum</h5>
+    <h5 style="margin-left: 5px; float: right">Cash: @Model.Cart.Cash</h5>
 </div>

@@ -3,18 +3,20 @@ using System.Collections.Generic;
 
 namespace Domain.Entities
 {
-    public class Cart : IEnumerable<Character>
+    public class Cart : IEnumerable<int>
     {
         public HashSet<int> CharactersIds{ get; set; }
+        public double Cash{ get; set; }
 
         public Cart()
         {
             CharactersIds = new HashSet<int>();
+            Cash = 30;
         }
 
-        IEnumerator<Character> IEnumerable<Character>.GetEnumerator()
+        IEnumerator<int> IEnumerable<int>.GetEnumerator()
         {
-            return (IEnumerator<Character>) GetEnumerator();
+            return (IEnumerator<int>) GetEnumerator();
         }
 
         public IEnumerator GetEnumerator()

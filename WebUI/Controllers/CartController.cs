@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Domain.Abstract;
 using Domain.Entities;
 using WebUI.Infrastructure;
+using WebUI.Models;
 
 namespace WebUI.Controllers
 {
@@ -24,13 +25,14 @@ namespace WebUI.Controllers
         public PartialViewResult Cart()
         {
             var result = new List<Character>();
-            foreach (var i in GetCart().CharactersIds)
+            var cart = GetCart();
+            foreach (var i in cart.CharactersIds)
             {
                 var a = repository.Characters.FirstOrDefault(x => x.Id == i);
                 if (a != null)
                     result.Add(a);
             }
-            return PartialView("Cart",result);
+            return PartialView("Cart",new CartViewModel(result, cart));
         }
           
         [HttpPost]
@@ -39,7 +41,12 @@ namespace WebUI.Controllers
             Character character = repository.Characters.FirstOrDefault(ch => ch.Id == id);
             if (character != null)
             {
-                GetCart().AddItem(character.Id);
+                var cart = GetCart();
+                if (cart.Cash > (double) character.Cost)
+                {
+                    cart.Cash -= (double) character.Cost;
+                    cart.AddItem(character.Id);
+                }
             }
             return new RedirectResult(returnUrl);
 
@@ -51,7 +58,9 @@ namespace WebUI.Controllers
             Character character = repository.Characters.FirstOrDefault(ch => ch.Id == id);
             if (character != null)
             {
-                GetCart().RemoveItem(character.Id);
+                var cart = GetCart();
+                cart.Cash += (double) character.Cost;
+                cart.RemoveItem(character.Id);
             }
             return new RedirectResult(returnUrl);
 
