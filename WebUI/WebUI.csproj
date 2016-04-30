@@ -214,9 +214,15 @@
     <Compile Include="Infrastructure\IAuthProvider.cs" />
     <Compile Include="Infrastructure\ICartProvider.cs" />
     <Compile Include="Infrastructure\NinjectControllerFactory.cs" />
+    <Compile Include="Migrations\201604300858506_Users.cs" />
+    <Compile Include="Migrations\201604300858506_Users.Designer.cs">
+      <DependentUpon>201604300858506_Users.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CartViewModel.cs" />
     <Compile Include="Models\CharacterModel.cs" />
-    <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\MainModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -267,11 +273,22 @@
     <Content Include="Views\Character\List.cshtml" />
     <Content Include="Views\Cart\Cart.cshtml" />
     <Content Include="Views\Character\Character.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Product\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -286,6 +303,11 @@
       <Project>{ffd70e5b-32ed-4301-920a-402113351482}</Project>
       <Name>Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201604300858506_Users.resx">
+      <DependentUpon>201604300858506_Users.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
