@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Domain.Entities;
 using Domain.Concrete;
+using WebUI.Infrastructure.Concrete;
 
 namespace WebUI.Infrastructure
 {
@@ -33,6 +34,7 @@ namespace WebUI.Infrastructure
         {
             ninjectKernel.Bind<ICharacterRepository>().To<EFCharacterRepository>();
             ninjectKernel.Bind<ICartProvider>().To<CartProvider>();
+            ninjectKernel.Bind<IAuthProvider>().To<FormsAuthProvider>();
         }
     }
 }

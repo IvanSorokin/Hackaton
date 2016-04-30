@@ -54,6 +54,8 @@
     <Compile Include="Concrete\EFDBContext.cs" />
     <Compile Include="Entities\Cart.cs" />
     <Compile Include="Entities\Character.cs" />
+    <Compile Include="Entities\Vote.cs" />
+    <Compile Include="Entities\VoteItem.cs" />
     <Compile Include="Migrations\201604290650044_Initial.cs" />
     <Compile Include="Migrations\201604290650044_Initial.Designer.cs">
       <DependentUpon>201604290650044_Initial.cs</DependentUpon>

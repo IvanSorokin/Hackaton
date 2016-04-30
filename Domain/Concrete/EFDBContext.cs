@@ -8,7 +8,7 @@ using Domain.Entities;
 
 namespace Domain.Concrete
 {
-    class EFDBContext : DbContext
+    public class EFDBContext : DbContext
     {
         public DbSet<Character> Characters { get; set; }
     }
