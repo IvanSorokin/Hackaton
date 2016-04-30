@@ -25,12 +25,7 @@
     @if (!Model.Voted)
     {
         <div style="position: absolute; right: 0; bottom: 0;">
-            @{Html.BeginForm("AddToCart", "Cart");}
-            <input type="hidden" name="id" value="@Model.Character.Id"/>
-            <input type="hidden" name="returnUrl" value="@Model.ReturnUrl"/>
-            <input value="Vote" type="submit" />
-            <input value="VoteAsync" type="button" onclick="vote(@Model.Character.Id, '@Model.ReturnUrl')"/>
-            @{Html.EndForm();}
+            <input value="Vote" type="button" onclick="vote(@Model.Character.Id, '@Model.ReturnUrl')"/>
         </div>
      }
 
