@@ -24,7 +24,7 @@ namespace UnitTests
                 new Character() {Sex= Sex.Male, Name="tyrion" }
             }.AsQueryable());
 
-            var controller = new CharacterController(mock.Object);
+            var controller = new CharacterController(mock.Object, null, null, null);
             Assert.IsTrue(controller.FilterByField("Sex", "Male").Count == 1);
         }
     }
