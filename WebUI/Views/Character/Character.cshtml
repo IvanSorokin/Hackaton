@@ -1,0 +1,33 @@
+﻿@model WebUI.Models.CharacterModel
+
+<div class="character-container">
+    <div class="image-container">
+        <img src="~/Content/Images/@Model.Character.PicturePath" />
+    </div>
+    <div class="character-info">
+        <div class="character__name">@Html.DisplayFor(modelItem => Model.Character.Name)</div>
+        <div class="character__description">@Html.DisplayFor(modelItem => Model.Character.Description)</div>
+        <div class="character__cost">Cost: @Html.DisplayFor(modelItem => Model.Character.Cost)</div>
+        <div class="character__status">
+            Status:
+            @if (Model.Character.IsAlive)
+            {
+                <span>Alive</span>
+            }
+            else
+            {
+                <span>Dead</span>
+            }
+            <div class="character-sex">Sex: @Model.Character.Sex.ToString()</div>
+        </div>
+    </div>
+
+    <div style="position: absolute; right: 0; bottom: 0;">
+        @{Html.BeginForm("AddToCart", "Cart");}
+        <input type="hidden" name="id" value="@Model.Character.Id"/>
+        <input type="hidden" name="returnUrl" value="@Model.ReturnUrl"/>
+        <input value="Vote" type="submit" />
+        @{Html.EndForm();}
+    </div>
+
+</div>

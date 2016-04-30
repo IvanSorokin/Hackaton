@@ -1,4 +1,5 @@
-﻿@model WebUI.Models.MainModel
+﻿@using WebUI.Models
+@model WebUI.Models.MainModel
 
 @{
     ViewBag.Title = "List";
@@ -12,7 +13,6 @@
     @Html.ActionLink("Display women", "List", "Character", new { fieldName = "Sex", fieldValue = "Female" }, null)
     @Html.ActionLink("Display dead people", "List", "Character", new { fieldName = "IsAlive", fieldValue = "False" }, null)
     @Html.RouteLink("Display all", "Default", new { action = "List" })
-    @Html.ActionLink("Get cart", "Cart","Cart")
     
 
     <h2>Продвинутый поиск</h2>
@@ -59,36 +59,7 @@
 
     @foreach (var item in Model.Characters.ToList())
     {
-        <div class="character-container">
-            <div class="image-container">
-                <img src="~/Content/Images/@item.PicturePath" />
-            </div>
-            <div class="character-info">
-                <div class="character__name">@Html.DisplayFor(modelItem => item.Name)</div>
-                <div class="character__description">@Html.DisplayFor(modelItem => item.Description)</div>
-                <div class="character__cost">Cost: @Html.DisplayFor(modelItem => item.Cost)</div>
-                <div class="character__status"> Status:
-                    @if (item.IsAlive)
-                    {
-                        <span>Alive</span>
-                    }
-                    else
-                    {
-                        <span>Dead</span>
-                    }
-                    <div class="character-sex">Sex: @item.Sex.ToString()</div>
-                </div>
-            </div>
-            
-            <div style="position: absolute; right: 0; bottom: 0;">
-                @{Html.BeginForm("AddToCart", "Cart");}
-                <input type="hidden" name="id" value="@item.Id" />
-                <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
-                <input value="Vote" type="submit" />
-                @{Html.EndForm();}
-            </div>
-
-        </div>
+        @Html.Partial("Character", new CharacterModel(item, Model.ReturnUrl))
     }
     @{ Html.RenderAction("Cart", "Cart"); }
 </div>

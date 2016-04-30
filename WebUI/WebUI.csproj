@@ -211,6 +211,7 @@
     <Compile Include="Infrastructure\CartProvider.cs" />
     <Compile Include="Infrastructure\ICartProvider.cs" />
     <Compile Include="Infrastructure\NinjectControllerFactory.cs" />
+    <Compile Include="Models\CharacterModel.cs" />
     <Compile Include="Models\MainModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -260,6 +261,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Character\List.cshtml" />
     <Content Include="Views\Cart\Cart.cshtml" />
+    <Content Include="Views\Character\Character.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
