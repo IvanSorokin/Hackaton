@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Domain.Abstract;
 using Domain.Entities;
+using WebUI.Infrastructure;
 
 namespace WebUI.Controllers
 {
@@ -12,10 +13,12 @@ namespace WebUI.Controllers
     {
         // GET: Cart
         private readonly ICharacterRepository repository;
+        private readonly ICartProvider cartProvider;
 
-        public CartController(ICharacterRepository rep)
+        public CartController(ICharacterRepository rep, ICartProvider cartProvider)
         {
             repository = rep;
+            this.cartProvider = cartProvider;
         }
 
         public PartialViewResult Cart()
@@ -56,11 +59,11 @@ namespace WebUI.Controllers
 
         private Cart GetCart()
         {
-            Cart cart = (Cart) Session["Cart"];
+            Cart cart = cartProvider.GetCart(this);
             if (cart == null)
             {
                 cart = new Cart();
-                Session["Cart"] = cart;
+                cartProvider.SetCart(this, cart);
             }
             return cart;
         }
