@@ -8,20 +8,6 @@ namespace Domain.Migrations
         public override void Up()
         {
             CreateTable(
-                "dbo.Characters",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
-                        Description = c.String(),
-                        Cost = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        IsAlive = c.Boolean(nullable: false),
-                        Sex = c.Int(nullable: false),
-                        PicturePath = c.String(),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
                 "dbo.VoteItems",
                 c => new
                     {

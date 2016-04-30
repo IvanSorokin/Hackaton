@@ -7,9 +7,10 @@
           rel="stylesheet" type="text/css" />
 }
 
-@Html.Partial("_LoginPartial")
+
 
 <div class="root">
+    @Html.Partial("_LoginPartial")
     <h2>Characters</h2>
     @Html.ActionLink("Display males", "List", "Character", new { fieldName = "Sex", fieldValue = "Male" }, null)
     @Html.ActionLink("Display women", "List", "Character", new { fieldName = "Sex", fieldValue = "Female" }, null)
