@@ -58,6 +58,7 @@ namespace WebUI.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            User.IsInRole("admin");
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
