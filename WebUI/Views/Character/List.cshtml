@@ -19,7 +19,12 @@
     @Html.ActionLink("Display women", "List", "Character", new { fieldName = "Sex", fieldValue = "Female" }, null)
     @Html.ActionLink("Display dead people", "List", "Character", new { fieldName = "LifeStatus", fieldValue = "False" }, null)
     @Html.RouteLink("Display all", "Default", new { action = "List" })
-    
+
+    @if (User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Characters edit", "Index", "Characters")
+    }
+
 
     <h2>Продвинутый поиск</h2>
     @{Html.BeginForm("List", "Character", FormMethod.Post);}

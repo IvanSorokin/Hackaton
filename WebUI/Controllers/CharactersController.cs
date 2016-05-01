@@ -19,12 +19,18 @@ namespace WebUI.Controllers
         // GET: Characters
         public async Task<ActionResult> Index()
         {
+            if (!User.IsInRole("Admin"))
+                return RedirectToAction("Login", "Account");
+
             return View(await db.Characters.ToListAsync());
         }
 
         // GET: Characters/Details/5
         public async Task<ActionResult> Details(int? id)
         {
+            if (!User.IsInRole("Admin"))
+                return RedirectToAction("Login", "Account");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -40,6 +46,8 @@ namespace WebUI.Controllers
         // GET: Characters/Create
         public ActionResult Create()
         {
+            if (!User.IsInRole("Admin"))
+                return RedirectToAction("Login", "Account");
             return View();
         }
 
@@ -50,6 +58,9 @@ namespace WebUI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "Id,PicturePath,Name,Description,Cost,LifeStatus,Sex")] Character character)
         {
+            if (!User.IsInRole("Admin"))
+                return RedirectToAction("Login", "Account");
+
             if (ModelState.IsValid)
             {
                 db.Characters.Add(character);
@@ -63,6 +74,9 @@ namespace WebUI.Controllers
         // GET: Characters/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
+            if (!User.IsInRole("Admin"))
+                return RedirectToAction("Login", "Account");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -82,6 +96,9 @@ namespace WebUI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "Id,PicturePath,Name,Description,Cost,LifeStatus,Sex")] Character character)
         {
+            if (!User.IsInRole("Admin"))
+                return RedirectToAction("Login", "Account");
+
             if (ModelState.IsValid)
             {
                 db.Entry(character).State = EntityState.Modified;
@@ -94,6 +111,9 @@ namespace WebUI.Controllers
         // GET: Characters/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
+            if (!User.IsInRole("Admin"))
+                return RedirectToAction("Login", "Account");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -111,6 +131,9 @@ namespace WebUI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
+            if (!User.IsInRole("Admin"))
+                return RedirectToAction("Login", "Account");
+
             Character character = await db.Characters.FindAsync(id);
             db.Characters.Remove(character);
             await db.SaveChangesAsync();
