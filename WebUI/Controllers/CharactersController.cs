@@ -62,7 +62,7 @@ namespace WebUI.Controllers
 
             if (ModelState.IsValid)
             {
-                if (Request.Files.Count > 0)
+                if (Request.Files[0].FileName != "")
                 {
                     character.PicturePath = Request.Files[0].FileName;
                     Request.Files[0].SaveAs(Server.MapPath("~") + "/Content/Images/" + character.PicturePath);
@@ -72,10 +72,10 @@ namespace WebUI.Controllers
 
                 db.Characters.Add(character);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("List", "Character");
             }
 
-            return View(character);
+            return RedirectToAction("List", "Character");
         }
 
         // GET: Characters/Edit/5
@@ -93,7 +93,7 @@ namespace WebUI.Controllers
             {
                 return HttpNotFound();
             }
-            return View(character);
+            return View("Edit",character);
         }
 
         // POST: Characters/Edit/5
@@ -110,33 +110,16 @@ namespace WebUI.Controllers
             {
                 db.Entry(character).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("List", "Character");
             }
-            return View(character);
+            return RedirectToAction("List", "Character");
         }
 
-        // GET: Characters/Delete/5
-        public async Task<ActionResult> Delete(int? id)
-        {
-            if (!User.IsInRole("Admin"))
-                return RedirectToAction("Login", "Account");
-
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Character character = await db.Characters.FindAsync(id);
-            if (character == null)
-            {
-                return HttpNotFound();
-            }
-            return View(character);
-        }
 
         // POST: Characters/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public async Task<ActionResult> Delete(int? id)
         {
             if (!User.IsInRole("Admin"))
                 return RedirectToAction("Login", "Account");
@@ -144,7 +127,7 @@ namespace WebUI.Controllers
             Character character = await db.Characters.FindAsync(id);
             db.Characters.Remove(character);
             await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            return RedirectToAction("List", "Character");
         }
 
         protected override void Dispose(bool disposing)

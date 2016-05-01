@@ -9,7 +9,6 @@
 }
 
 
-
 <div class="root">
     @Html.Partial("_LoginPartial")
     @{ var votedMessage = Model.UserVoted ? "(вы уже голосовали на этой неделе)" : "";}
@@ -22,9 +21,8 @@
 
     @if (User.IsInRole("Admin"))
     {
-        @Html.ActionLink("Characters edit", "Index", "Characters")
+        @Html.ActionLink("Create new character", "Create", "Characters",  null, null);
     }
-
 
     <h2>Продвинутый поиск</h2>
     @{Html.BeginForm("List", "Character", FormMethod.Post);}
