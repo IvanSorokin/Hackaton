@@ -1,0 +1,50 @@
+﻿@using System.Web.Mvc.Html
+@using WebUI.Models
+@model Tuple<Domain.Entities.Character, List<Domain.Entities.Message>>
+
+@{
+    Layout = null;
+    <link href="@Url.Content("~/Content/Characters.css")"
+          rel="stylesheet" type="text/css" />
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+@Html.Partial("Character", new CharacterModel(Model.Item1, "/", true))
+@Html.Action("Messages", "Message", new { id = Model.Item1.Id })
+@*<form method="POST" action="/Message/Add">*@
+    <input id="content" type="text" name="content"/>
+@*    <input type="hidden" name="id" value="@Model.Item1.Id"/>*@
+@*    <input type="submit" value="send"/>*@
+@*</form>*@
+    <input type="button" onclick="addMessage(@Model.Item1.Id)"/>
+<script>
+    function addMessage(id) {
+        var content = document.getElementById('content').value;
+        fetch('/Message/Add', {
+                method: "post",
+                headers: { "Content-Type": "application/json", "enctype": "json"},
+                body: JSON.stringify({
+                    id: id,
+                    content: content
+                }),
+                credentials: "same-origin"
+        })
+            .then(function(data) {
+                return data.text();
+            })
+            .then(function(data) {
+                var root = document.getElementById('messages-root');
+                var currentHtml = root.innerHTML;
+                root.innerHTML = currentHtml + data;
+            });
+    }
+</script>
+</body>
+</html>

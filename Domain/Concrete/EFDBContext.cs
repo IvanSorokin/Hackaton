@@ -14,5 +14,6 @@ namespace Domain.Concrete
         public DbSet<Character> Characters { get; set; }
         public DbSet<Vote> Votes { get; set; }
         public DbSet<VoteItem> VoteItems { get; set; }
+        public DbSet<Message> Messages{ get; set; }
     }
 }

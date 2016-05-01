@@ -28,22 +28,28 @@
         <div style="position: absolute; right: 0; bottom: 0;">
             <input value="Vote" type="button" onclick="vote(@Model.Character.Id, '@Model.ReturnUrl')"/>
         </div>
+    }
+    @if (User.IsInRole("Admin"))
+    {
 
         <div style="position: absolute; right: 50px; bottom: 0px;">
-            @{Html.BeginForm("Delete", "Characters", FormMethod.Post);}
+            @{ Html.BeginForm("Delete", "Characters", FormMethod.Post); }
             @Html.AntiForgeryToken()
-            <input type="hidden" name="id" value="@Model.Character.Id" />
-            <input value="Delete" type="submit" />
-            @{Html.EndForm();}
+            <input type="hidden" name="id" value="@Model.Character.Id"/>
+            <input value="Delete" type="submit"/>
+            @{ Html.EndForm(); }
         </div>
 
         <div style="position: absolute; right: 120px; bottom: 2px;">
-            @Html.ActionLink("Edit", "Edit", "Characters", new { id = Model.Character.Id }, null)
+            @Html.ActionLink("Edit", "Edit", "Characters", new {id = Model.Character.Id}, null)
+        </div>
+        <div style="position: absolute; right: 160px; bottom: 2px;">
+            @Html.ActionLink("Details", "Details", "Character", new {id = Model.Character.Id}, null)
         </div>
 
-        
+
     }
 
-    
+
 
 </div>

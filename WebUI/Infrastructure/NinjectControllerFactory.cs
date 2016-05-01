@@ -39,6 +39,7 @@ namespace WebUI.Infrastructure
             ninjectKernel.Bind<IAuthProvider>().To<FormsAuthProvider>();
             ninjectKernel.Bind<IWeekProvider>().To<WeekProvider>();
             ninjectKernel.Bind<IUserProvider>().To<UserProvider>();
+            ninjectKernel.Bind<IMessageRepository>().To<MessageRepository>();
         }
     }
 }

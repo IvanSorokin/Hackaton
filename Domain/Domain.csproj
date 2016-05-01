@@ -87,14 +87,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\ICharacterRepository.cs" />
+    <Compile Include="Abstract\IMessageRepository.cs" />
     <Compile Include="Abstract\IVoteRepository.cs" />
     <Compile Include="Concrete\EFCharacterRepository.cs" />
     <Compile Include="Concrete\EFDBContext.cs" />
     <Compile Include="Concrete\DbContext.cs" />
+    <Compile Include="Concrete\MessageRepository.cs" />
     <Compile Include="Concrete\VoteRepository.cs" />
     <Compile Include="Entities\Cart.cs" />
     <Compile Include="Entities\Character.cs" />
     <Compile Include="Entities\LifeStatus.cs" />
+    <Compile Include="Entities\Message.cs" />
     <Compile Include="Entities\Vote.cs" />
     <Compile Include="Entities\VoteItem.cs" />
     <Compile Include="Migrations\201604301032319_Votes.cs" />
@@ -112,6 +115,10 @@
     <Compile Include="Migrations\201605010703401_HideImagePath.cs" />
     <Compile Include="Migrations\201605010703401_HideImagePath.Designer.cs">
       <DependentUpon>201605010703401_HideImagePath.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605011037245_Messages.cs" />
+    <Compile Include="Migrations\201605011037245_Messages.Designer.cs">
+      <DependentUpon>201605011037245_Messages.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -132,6 +139,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605010703401_HideImagePath.resx">
       <DependentUpon>201605010703401_HideImagePath.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605011037245_Messages.resx">
+      <DependentUpon>201605011037245_Messages.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

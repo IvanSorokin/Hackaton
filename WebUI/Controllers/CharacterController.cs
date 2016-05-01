@@ -3,6 +3,8 @@ using Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
@@ -14,20 +16,23 @@ namespace WebUI.Controllers
     public class CharacterController : Controller
     {
         private ICharacterRepository repository;
-        private IVoteRepository voteRepository;
-        private IUserProvider userProvider;
-        private IWeekProvider weekProvider;
+        private readonly IVoteRepository voteRepository;
+        private readonly IUserProvider userProvider;
+        private readonly IWeekProvider weekProvider;
+        private readonly IMessageRepository messageRepository;
 
 
         public CharacterController (
             ICharacterRepository productRepository, 
             IVoteRepository voteRepository, 
             IUserProvider userProvider,
-            IWeekProvider weekProvider)
+            IWeekProvider weekProvider,
+            IMessageRepository messageRepository)
         {
             this.repository = productRepository;
             this.voteRepository = voteRepository;
             this.weekProvider = weekProvider;
+            this.messageRepository = messageRepository;
             this.userProvider = userProvider;
         }
 
@@ -81,6 +86,18 @@ namespace WebUI.Controllers
                 return View(new MainModel(repository.Characters, Request.RawUrl, UserVoted()));
             return View(new MainModel(FilterByField(fieldName, fieldValue), Request.RawUrl, UserVoted()));
         }
-
+        public async Task<ActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Character character = await repository.FindAsync((int)id);
+            if (character == null)
+            {
+                return HttpNotFound();
+            }
+            return View(Tuple.Create(character, messageRepository.GetMessagesForCharacter(character.Id)));
+        }
     }
 }

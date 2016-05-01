@@ -13,5 +13,10 @@ namespace Domain.Concrete
     {
         private EFDBContext context = new EFDBContext();
         public IQueryable<Character> Characters => context.Characters;
+
+        public async Task<Character> FindAsync(int id)
+        {
+            return await context.Characters.FindAsync(id);
+        }
     }
 }

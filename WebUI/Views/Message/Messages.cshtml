@@ -1,0 +1,7 @@
+﻿@model IEnumerable<Domain.Entities.Message>
+<div id="messages-root">
+    @foreach (var item in Model)
+    {
+        @Html.Partial("Message", item)
+    }
+</div>
