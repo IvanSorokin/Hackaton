@@ -1,4 +1,5 @@
-﻿@using WebUI.Models
+﻿@using Domain.Entities
+@using WebUI.Models
 @model WebUI.Models.MainModel
 
 @{
@@ -16,7 +17,7 @@
     <h4>@votedMessage</h4>
     @Html.ActionLink("Display males", "List", "Character", new { fieldName = "Sex", fieldValue = "Male" }, null)
     @Html.ActionLink("Display women", "List", "Character", new { fieldName = "Sex", fieldValue = "Female" }, null)
-    @Html.ActionLink("Display dead people", "List", "Character", new { fieldName = "IsAlive", fieldValue = "False" }, null)
+    @Html.ActionLink("Display dead people", "List", "Character", new { fieldName = "LifeStatus", fieldValue = "False" }, null)
     @Html.RouteLink("Display all", "Default", new { action = "List" })
     
 
@@ -30,13 +31,13 @@
 
         <li style="display:inline">
             @{ 
-                var param = ViewBag.IsAlive == null ? false : (bool)ViewBag.IsAlive;
+                var param = ViewBag.LifeStatus != null && ViewBag.LifeStatus == LifeStatus.Alive;
                 var checkLife = param ? "selected" : "";
                 var checkDead = param ? "" : "selected";
              }
-            <select id="Alive?" name="isAlive">
-                <option value="True" @checkLife>Alive</option>
-                <option value="False" @checkDead>Dead</option>
+            <select id="Alive?" name="status">
+                <option value="Alive" @checkLife>Alive</option>
+                <option value="Dead" @checkDead>Dead</option>
             </select>
         </li>
 

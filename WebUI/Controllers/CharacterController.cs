@@ -46,33 +46,31 @@ namespace WebUI.Controllers
                 .ToList();
 
         }
-        public List<Character> FilterByParameters(string name, bool isAlive, Sex sex)
+        public List<Character> FilterByParameters(string name, LifeStatus status, Sex sex)
         {
             return repository.Characters
-                .Where(c => c.Name.Contains(name) && c.IsAlive == isAlive && c.Sex == sex).ToList();
+                .Where(c => c.Name.Contains(name) && c.LifeStatus == status && c.Sex == sex).ToList();
         }
 
 
         [HttpGet]
-        public ViewResult AdvancedList(string name, bool isAlive, Sex sex)
+        public ViewResult AdvancedList(string name, LifeStatus status, Sex sex)
         {
-            var view = View("List",new MainModel(FilterByParameters(name, isAlive, sex), Request.RawUrl, UserVoted()));
+            var view = View("List",new MainModel(FilterByParameters(name, status, sex), Request.RawUrl, UserVoted()));
             view.ViewBag.Name = name;
-            view.ViewBag.IsAlive = isAlive;
+            view.ViewBag.LifeStatus = status;
             view.ViewBag.Sex = sex;
             return view;
         }
 
         [HttpPost]
-        public ViewResult List(string name, bool isAlive, Sex sex)
+        public ViewResult List(string name, LifeStatus status, Sex sex)
         {
 
-            var backUrl = string.Format("/Character/AdvancedList?name={0}&isAlive={1}&sex={2}", name, isAlive, sex);
-            var view = View(new MainModel(FilterByParameters(name, isAlive, sex), backUrl, UserVoted()));
-            var userId = User.Identity.GetUserId();
-            var userName = User.Identity.Name;
+            var backUrl = string.Format("/Character/AdvancedList?name={0}&status={1}&sex={2}", name, status, sex);
+            var view = View(new MainModel(FilterByParameters(name, status, sex), backUrl, UserVoted()));
             view.ViewBag.Name = name;
-            view.ViewBag.IsAlive = isAlive;
+            view.ViewBag.LifeStatus = status;
             view.ViewBag.Sex = sex;
             return view;
         }
@@ -83,5 +81,6 @@ namespace WebUI.Controllers
                 return View(new MainModel(repository.Characters, Request.RawUrl, UserVoted()));
             return View(new MainModel(FilterByField(fieldName, fieldValue), Request.RawUrl, UserVoted()));
         }
+
     }
 }

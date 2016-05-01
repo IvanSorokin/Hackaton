@@ -19,7 +19,6 @@
 }
 
 function unvote(id, returnUrl) {
-    //RemoveFromCart
     fetch("/Cart/RemoveFromCart", {
         method: "post",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },

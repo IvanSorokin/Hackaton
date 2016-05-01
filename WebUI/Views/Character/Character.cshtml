@@ -1,4 +1,5 @@
-﻿@model WebUI.Models.CharacterModel
+﻿@using Domain.Entities
+@model WebUI.Models.CharacterModel
 
 <div class="character-container">
     <div class="image-container">
@@ -10,7 +11,7 @@
         <div class="character__cost">Cost: @Html.DisplayFor(modelItem => Model.Character.Cost)</div>
         <div class="character__status">
             Status:
-            @if (Model.Character.IsAlive)
+            @if (Model.Character.LifeStatus == LifeStatus.Alive)
             {
                 <span>Alive</span>
             }

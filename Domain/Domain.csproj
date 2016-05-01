@@ -46,9 +46,38 @@
       <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -65,11 +94,24 @@
     <Compile Include="Concrete\VoteRepository.cs" />
     <Compile Include="Entities\Cart.cs" />
     <Compile Include="Entities\Character.cs" />
+    <Compile Include="Entities\LifeStatus.cs" />
     <Compile Include="Entities\Vote.cs" />
     <Compile Include="Entities\VoteItem.cs" />
     <Compile Include="Migrations\201604301032319_Votes.cs" />
     <Compile Include="Migrations\201604301032319_Votes.Designer.cs">
       <DependentUpon>201604301032319_Votes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605010627591_Attributes.cs" />
+    <Compile Include="Migrations\201605010627591_Attributes.Designer.cs">
+      <DependentUpon>201605010627591_Attributes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605010645166_Tolerants.cs" />
+    <Compile Include="Migrations\201605010645166_Tolerants.Designer.cs">
+      <DependentUpon>201605010645166_Tolerants.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605010703401_HideImagePath.cs" />
+    <Compile Include="Migrations\201605010703401_HideImagePath.Designer.cs">
+      <DependentUpon>201605010703401_HideImagePath.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -81,6 +123,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201604301032319_Votes.resx">
       <DependentUpon>201604301032319_Votes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605010627591_Attributes.resx">
+      <DependentUpon>201605010627591_Attributes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605010645166_Tolerants.resx">
+      <DependentUpon>201605010645166_Tolerants.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605010703401_HideImagePath.resx">
+      <DependentUpon>201605010703401_HideImagePath.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
