@@ -43,12 +43,12 @@
         <div style="position: absolute; right: 120px; bottom: 2px;">
             @Html.ActionLink("Edit", "Edit", "Characters", new {id = Model.Character.Id}, null)
         </div>
-        <div style="position: absolute; right: 160px; bottom: 2px;">
-            @Html.ActionLink("Details", "Details", "Character", new {id = Model.Character.Id}, null)
-        </div>
-
 
     }
+
+    <div style="position: absolute; right: 160px; bottom: 2px;">
+        @Html.ActionLink("Details", "Details", "Character", new { id = Model.Character.Id }, null)
+    </div>
 
 
 
