@@ -55,7 +55,6 @@ namespace WebUI.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "Id,PicturePath,Name,Description,Cost,LifeStatus,Sex")] Character character)
         {
             if (!User.IsInRole("Admin"))
@@ -63,6 +62,14 @@ namespace WebUI.Controllers
 
             if (ModelState.IsValid)
             {
+                if (Request.Files.Count > 0)
+                {
+                    character.PicturePath = Request.Files[0].FileName;
+                    Request.Files[0].SaveAs(Server.MapPath("~") + "/Content/Images/" + character.PicturePath);
+                }
+                else
+                    character.PicturePath = Server.MapPath("~") + "/Content/Images/peppa.jpg";
+
                 db.Characters.Add(character);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
